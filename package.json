@@ -10,8 +10,9 @@
     "start": "node dist",
     "start:dev": "node --watch dist",
     "prepare": "husky install",
-    "test": "jest --passWithNoTests",
-    "test:dev": "jest --watchAll --passWithNoTests"
+    "test": "jest test --passWithNoTests",
+    "test:dev": "jest test --watchAll --passWithNoTests",
+    "test:coverage": "jest test --coverage --watchAll=false --passWithNoTests"
   },
   "keywords": [],
   "author": "",
@@ -32,6 +33,7 @@
     "typescript": "^4.9.5"
   },
   "dependencies": {
-    "express": "^4.18.2"
+    "express": "^4.18.2",
+    "jest-ts-webcompat-resolver": "^1.0.0"
   }
 }
