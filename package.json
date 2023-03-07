@@ -10,9 +10,9 @@
     "start": "node dist",
     "start:dev": "node --watch dist",
     "prepare": "husky install",
-    "test": "jest test --passWithNoTests",
-    "test:dev": "jest test --watchAll --passWithNoTests",
-    "test:coverage": "jest test --coverage --watchAll=false --passWithNoTests"
+    "test": "jest test",
+    "test:dev": "jest test --watchAll",
+    "test:coverage": "jest test --coverage --watchAll=false"
   },
   "keywords": [],
   "author": "",
