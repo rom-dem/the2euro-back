@@ -1,7 +1,7 @@
 import createDebug from "debug";
 import mongoose from "mongoose";
 
-const debug = createDebug("the2euro:database");
+const debug = createDebug("the2euro-api:database");
 
 const connectDatabase = async (url: string) => {
   mongoose.set("strictQuery", false);

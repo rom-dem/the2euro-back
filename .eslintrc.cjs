@@ -8,6 +8,9 @@ module.exports = {
     {
       extends: ["xo-typescript", "prettier"],
       files: ["*.ts", "*.tsx"],
+      rules: {
+        "@typescript-eslint/consistent-type-assertions": "off",
+      },
     },
   ],
   parserOptions: {
