@@ -6,6 +6,7 @@ import {
   generalError,
   notFoundError,
 } from "./middlewares/errorMiddlewares/errorMiddlewares.js";
+import usersRouters from "./routers/usersRouters/usersRouters.js";
 
 export const app = express();
 
@@ -21,6 +22,8 @@ const corsOptions: cors.CorsOptions = { origin: allowedOrigins };
 app.use(cors(corsOptions));
 app.use(morgan("dev"));
 app.use(express.json());
+
+app.use("/users", usersRouters);
 
 app.use("/", notFoundError);
 app.use("/", generalError);
