@@ -2,6 +2,10 @@ import "../loadEnvironments.js";
 import express from "express";
 import morgan from "morgan";
 import cors from "cors";
+import {
+  generalError,
+  notFoundError,
+} from "./middlewares/errorMiddlewares/errorMiddlewares.js";
 
 export const app = express();
 
@@ -17,3 +21,6 @@ const corsOptions: cors.CorsOptions = { origin: allowedOrigins };
 app.use(cors(corsOptions));
 app.use(morgan("dev"));
 app.use(express.json());
+
+app.use("/", notFoundError);
+app.use("/", generalError);
