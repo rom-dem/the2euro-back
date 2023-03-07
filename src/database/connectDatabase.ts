@@ -10,8 +10,7 @@ const connectDatabase = async (url: string) => {
     await mongoose.connect(url);
     debug("Connected to data base");
   } catch (error: unknown) {
-    debug("Check the cables in your internet box");
-    throw new Error("Error while connecting to data base");
+    debug("Check the cables in your internet box", (error as Error).message);
   }
 };
 
