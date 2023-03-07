@@ -3,7 +3,7 @@ import createDebug from "debug";
 import { app } from "./app.js";
 import { type CustomError } from "../CustomError/CustomError.js";
 
-const debug = createDebug("the2euro:server:startServer");
+const debug = createDebug("the2euro-api:server:startServer");
 
 const startServer = async (port: number) =>
   new Promise((resolve, reject) => {
