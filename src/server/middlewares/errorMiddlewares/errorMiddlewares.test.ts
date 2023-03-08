@@ -1,4 +1,5 @@
 import { type NextFunction, type Request, type Response } from "express";
+import { ValidationError, type errors } from "express-validation";
 import { CustomError } from "../../../CustomError/CustomError";
 import { generalError, notFoundError } from "./errorMiddlewares";
 
@@ -41,6 +42,42 @@ describe("Given a generalError middleware", () => {
       generalError(error, req, res as Response, next);
 
       expect(res.json).toHaveBeenCalledWith({ error: errorMessage });
+    });
+  });
+
+  describe("When it receives a response and an error from validation because no email was provided", () => {
+    test("Then it should call its message method with the message '\"email\" is not allowed to be empty'", () => {
+      const error: errors = {
+        body: [
+          {
+            name: "ValidationError",
+            isJoi: true,
+            annotate(stripColors) {
+              return "";
+            },
+            _original: "",
+            message: "'email' is not allowed to be empty",
+            details: [
+              {
+                message: "",
+                path: [""],
+                type: "",
+              },
+            ],
+          },
+        ],
+      };
+      const publicMessage = "'email' is not allowed to be empty";
+      const validationError = new ValidationError(error, {});
+
+      generalError(
+        validationError as unknown as CustomError,
+        req,
+        res as Response,
+        next
+      );
+
+      expect(res.json).toHaveBeenCalledWith({ error: publicMessage });
     });
   });
 });

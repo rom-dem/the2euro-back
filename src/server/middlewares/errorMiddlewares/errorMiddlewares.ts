@@ -1,4 +1,5 @@
 import createDebug from "debug";
+import { ValidationError } from "express-validation";
 import { type NextFunction, type Request, type Response } from "express";
 import { CustomError } from "../../../CustomError/CustomError.js";
 
@@ -20,6 +21,14 @@ export const generalError = (
   res: Response,
   next: NextFunction
 ) => {
+  if (error instanceof ValidationError) {
+    const validationErrors = error.details
+      .body!.map((joiError) => joiError.message)
+      .join("&");
+    error.publicMessage = validationErrors;
+    debug(validationErrors);
+  }
+
   debug(error.message);
 
   const statusCode = error.statusCode || 500;
