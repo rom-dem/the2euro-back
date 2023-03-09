@@ -12,13 +12,13 @@ const startServer = async (port: number) =>
       debug(`Server is listening on http://localhost:${port}`);
     });
     server.on("error", (error: CustomError) => {
-      const errorMessage = "Error starting the server";
+      const errorMessage = "Error while starting the server";
 
       if (error.code === "EADDRINUSE") {
         debug(errorMessage, `The port ${port} is already in use`);
       }
 
-      reject(new Error(errorMessage));
+      reject(error);
     });
   });
 
