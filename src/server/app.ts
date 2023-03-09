@@ -25,5 +25,5 @@ app.use(express.json());
 
 app.use("/users", usersRouters);
 
-app.use("/", notFoundError);
-app.use("/", generalError);
+app.use(notFoundError);
+app.use(generalError);

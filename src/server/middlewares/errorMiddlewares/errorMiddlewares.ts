@@ -24,7 +24,7 @@ export const generalError = (
   if (error instanceof ValidationError) {
     const validationErrors = error.details
       .body!.map((joiError) => joiError.message)
-      .join("&");
+      .join(" & ");
     error.publicMessage = validationErrors;
     debug(validationErrors);
   }
