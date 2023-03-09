@@ -2,6 +2,7 @@ import createDebug from "debug";
 import { ValidationError } from "express-validation";
 import { type NextFunction, type Request, type Response } from "express";
 import { CustomError } from "../../../CustomError/CustomError.js";
+import chalk from "chalk";
 
 const debug = createDebug("the2euro-api:server:middlewares:errorMiddlewares");
 
@@ -26,7 +27,7 @@ export const generalError = (
       .body!.map((joiError) => joiError.message)
       .join(" & ");
     error.publicMessage = validationErrors;
-    debug(validationErrors);
+    debug(chalk.bgYellow(validationErrors));
   }
 
   debug(error.message);
