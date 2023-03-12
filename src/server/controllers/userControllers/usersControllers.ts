@@ -3,7 +3,7 @@ import { type NextFunction, type Request, type Response } from "express";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 import { type UserCredentials } from "../../types.js";
-import User from "../../../database/models/User.js";
+import User from "../../../database/models/User/User.js";
 import { CustomError } from "../../../CustomError/CustomError.js";
 import { type CustomJwtPayload } from "./types.js";
 
