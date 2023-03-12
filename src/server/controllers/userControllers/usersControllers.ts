@@ -2,10 +2,10 @@ import "../../../loadEnvironments.js";
 import { type NextFunction, type Request, type Response } from "express";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
-import { type UserCredentials } from "../../types.js";
+import { type UserCredentials } from "../../../types/users/types.js";
 import User from "../../../database/models/User/User.js";
 import { CustomError } from "../../../CustomError/CustomError.js";
-import { type CustomJwtPayload } from "./types.js";
+import { type CustomJwtPayload } from "../../../types/users/types.js";
 
 export const loginUser = async (
   req: Request<

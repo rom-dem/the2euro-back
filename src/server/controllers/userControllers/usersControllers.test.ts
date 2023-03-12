@@ -3,7 +3,7 @@ import mongoose from "mongoose";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 import User from "../../../database/models/User/User.js";
-import { type UserCredentials } from "../../types.js";
+import { type UserCredentials } from "../../../types/users/types.js";
 import { loginUser } from "./usersControllers.js";
 import { CustomError } from "../../../CustomError/CustomError.js";
 

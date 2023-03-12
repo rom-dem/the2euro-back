@@ -5,7 +5,7 @@ import jwt from "jsonwebtoken";
 import bcrypt from "bcryptjs";
 import connectDatabase from "../../../database/connectDatabase.js";
 import User from "../../../database/models/User/User.js";
-import { type UserCredentials } from "../../types.js";
+import { type UserCredentials } from "../../../types/users/types.js";
 import { app } from "../../app.js";
 import { CustomError } from "../../../CustomError/CustomError.js";
 
