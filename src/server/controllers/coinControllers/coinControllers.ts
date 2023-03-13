@@ -14,7 +14,7 @@ export const getCoins = async (
   } catch (error: unknown) {
     const customError = new CustomError(
       (error as Error).message,
-      400,
+      500,
       "Couldn't find coins"
     );
 
