@@ -3,7 +3,7 @@ import { CustomError } from "../../../CustomError/CustomError";
 import Coin from "../../../database/models/Coin/Coin";
 import { type CoinData } from "../../../types/coins/types";
 import { type CustomRequest } from "../../../types/users/types";
-import { deleteCoin, getCoins } from "./coinControllers";
+import { deleteCoinById, getCoins } from "./coinControllers";
 
 const mockCoin: CoinData = {
   country: "Andorra",
@@ -65,7 +65,7 @@ describe("Given getCoins controller", () => {
   });
 });
 
-describe("Given deleteCoin controller", () => {
+describe("Given deleteCoinById controller", () => {
   describe("When it receives a request with a coin id to delete", () => {
     test("Then it should call its status method with status code 200 and its json method with the coin object", async () => {
       const req: Partial<CustomRequest> = { params: { id: `${mockCoin.id}` } };
@@ -80,7 +80,7 @@ describe("Given deleteCoin controller", () => {
         exec: jest.fn().mockReturnValue(mockCoin),
       }));
 
-      await deleteCoin(req as CustomRequest, res as Response, next);
+      await deleteCoinById(req as CustomRequest, res as Response, next);
 
       expect(res.status).toHaveBeenCalledWith(expectedStatusCode);
       expect(res.json).toHaveBeenCalledWith({ message: "Coin deleted!" });
@@ -100,7 +100,7 @@ describe("Given deleteCoin controller", () => {
 
       Coin.findByIdAndDelete = jest.fn().mockReturnValue(new Error());
 
-      await deleteCoin(req as CustomRequest, res as Response, next);
+      await deleteCoinById(req as CustomRequest, res as Response, next);
       const expectedError = new CustomError(
         "Bad request",
         400,
