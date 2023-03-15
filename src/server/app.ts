@@ -8,6 +8,7 @@ import {
 } from "./middlewares/errorMiddlewares/errorMiddlewares.js";
 import usersRouters from "./routers/usersRouters/usersRouters.js";
 import coinsRouters from "./routers/coinsRouters/coinsRouters.js";
+import { endpoints } from "./routers/endpoints.js";
 
 export const app = express();
 
@@ -26,7 +27,8 @@ app.use(cors(corsOptions));
 app.use(morgan("dev"));
 app.use(express.json());
 
-app.use("/the2euro", usersRouters, coinsRouters);
+app.use(endpoints.users, usersRouters);
+app.use(endpoints.root, coinsRouters);
 
 app.use(notFoundError);
 app.use(generalError);
