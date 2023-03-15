@@ -33,21 +33,18 @@ export const deleteCoin = async (
   const { coinId } = req.params;
 
   try {
-    const coin = await Coin.findByIdAndDelete({
+    await Coin.findByIdAndDelete({
       _id: coinId,
       owner: req.owner,
     }).exec();
 
-    if (!coin) {
-      throw new CustomError(
-        "Internal server error",
-        500,
-        "Couldn't delete the coin"
-      );
-    }
-
-    res.status(200).json({ coin });
+    res.status(200).json({ message: "Coin deleted!" });
   } catch (error) {
-    next(error);
+    const customError = new CustomError(
+      "Internal server error",
+      500,
+      "Couldn't delete the coin"
+    );
+    next(customError);
   }
 };
