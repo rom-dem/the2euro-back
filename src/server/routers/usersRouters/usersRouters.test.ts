@@ -8,6 +8,7 @@ import User from "../../../database/models/User/User.js";
 import { app } from "../../app.js";
 import { CustomError } from "../../../CustomError/CustomError.js";
 import { type UserCredentials } from "../../../types/users/types.js";
+import { endpoints } from "../endpoints.js";
 
 let server: MongoMemoryServer;
 
@@ -25,8 +26,8 @@ afterEach(async () => {
   await User.deleteMany();
 });
 
-describe("Given a POST `/the2euro/login` endpoint", () => {
-  const loginUrl = "/the2euro/login";
+describe("Given a POST `/users/login` endpoint", () => {
+  const loginUrl = `${endpoints.users}${endpoints.login}`;
   const mockUser: UserCredentials = {
     email: "d0d0@test.com",
     password: "d0d01234",

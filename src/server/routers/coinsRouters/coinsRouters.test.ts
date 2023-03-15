@@ -4,6 +4,7 @@ import request from "supertest";
 import connectDatabase from "../../../database/connectDatabase";
 
 import { app } from "../../app";
+import { endpoints } from "../endpoints";
 
 let server: MongoMemoryServer;
 
@@ -17,10 +18,10 @@ afterAll(async () => {
   await mongoose.connection.close();
 });
 
-describe("Given a GET '/the2euro/coins' endpoint", () => {
+describe("Given a GET '/coins' endpoint", () => {
   describe("When it receives a request", () => {
     test("Then it should respond with status 200 and a property 'coins' in its body object", async () => {
-      const getCoinUrl = "/the2euro/coins";
+      const getCoinUrl = endpoints.coins;
       const expectedStatusCode = 200;
 
       const response = await request(app)

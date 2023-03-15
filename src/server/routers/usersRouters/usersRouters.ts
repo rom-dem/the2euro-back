@@ -2,13 +2,12 @@ import { Router } from "express";
 import { validate } from "express-validation";
 import { loginUser } from "../../controllers/userControllers/usersControllers.js";
 import loginSchema from "../../schemas/loginSchema.js";
-
-const loginRoute = "/login";
+import { endpoints } from "../endpoints.js";
 
 const usersRouters = Router();
 
 usersRouters.post(
-  loginRoute,
+  endpoints.login,
   validate(loginSchema, {}, { abortEarly: false }),
   loginUser
 );
