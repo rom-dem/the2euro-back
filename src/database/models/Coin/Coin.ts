@@ -25,6 +25,11 @@ const coinSchema = new Schema({
     type: String,
     required: true,
   },
+  owner: {
+    type: Schema.Types.ObjectId,
+    required: true,
+    ref: "User",
+  },
 });
 
 const Coin = model("Coin", coinSchema, "coins");

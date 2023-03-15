@@ -5,6 +5,8 @@ export interface CoinData {
   feature: string;
   description: string;
   image: string;
+  id: string;
+  owner: string;
 }
 
 export type CoinsData = CoinData[];
