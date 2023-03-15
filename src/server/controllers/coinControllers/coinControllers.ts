@@ -25,16 +25,16 @@ export const getCoins = async (
   }
 };
 
-export const deleteCoin = async (
+export const deleteCoinById = async (
   req: CustomRequest,
   res: Response,
   next: NextFunction
 ) => {
-  const { coinId } = req.params;
+  const { id } = req.params;
 
   try {
     await Coin.findByIdAndDelete({
-      _id: coinId,
+      _id: id,
       owner: req.owner,
     }).exec();
 

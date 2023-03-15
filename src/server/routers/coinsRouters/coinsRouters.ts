@@ -1,10 +1,16 @@
 import { Router } from "express";
-import { getCoins } from "../../controllers/coinControllers/coinControllers.js";
-
-const coinsRoute = "/coins";
+import {
+  deleteCoinById,
+  getCoins,
+} from "../../controllers/coinControllers/coinControllers.js";
+import { endpoints } from "../endpoints.js";
 
 const coinsRouters = Router();
 
-coinsRouters.get(coinsRoute, getCoins);
+coinsRouters.get(endpoints.coins, getCoins);
+coinsRouters.delete(
+  `${endpoints.coins}${endpoints.delete}${endpoints.byId}`,
+  deleteCoinById
+);
 
 export default coinsRouters;
