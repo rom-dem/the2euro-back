@@ -6,4 +6,5 @@ export const endpoints = {
   delete: "/delete",
   byId: "/:id",
   coins: "/coins",
+  create: "/create",
 };
