@@ -17,4 +17,5 @@ export interface CustomJwtPayload extends JwtPayload {
 
 export interface CustomRequest extends Request {
   owner: string;
+  id: string;
 }
