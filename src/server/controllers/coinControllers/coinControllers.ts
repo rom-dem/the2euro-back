@@ -1,6 +1,8 @@
 import { type NextFunction, type Request, type Response } from "express";
 import { CustomError } from "../../../CustomError/CustomError.js";
-import Coin from "../../../database/models/Coin/Coin.js";
+import Coin, {
+  type CoinSchemaStructure,
+} from "../../../database/models/Coin/Coin.js";
 import { type CustomRequest } from "../../../types/users/types.js";
 
 export const getCoins = async (
@@ -44,6 +46,31 @@ export const deleteCoinById = async (
       "Internal server error",
       500,
       "Couldn't delete the coin"
+    );
+    next(customError);
+  }
+};
+
+export const createCoin = async (
+  req: CustomRequest,
+  res: Response,
+  next: NextFunction
+) => {
+  const coin = req.body as CoinSchemaStructure;
+  const { id } = req;
+
+  try {
+    const newCoin = await Coin.create({
+      ...coin,
+      owner: id,
+    });
+
+    res.status(201).json({ ...newCoin.toJSON() });
+  } catch (error) {
+    const customError = new CustomError(
+      "There was a problem. Couldn't create the coin",
+      500,
+      "Couldn't create the coin"
     );
     next(customError);
   }

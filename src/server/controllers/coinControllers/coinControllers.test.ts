@@ -3,7 +3,7 @@ import { CustomError } from "../../../CustomError/CustomError";
 import Coin from "../../../database/models/Coin/Coin";
 import { type CoinData } from "../../../types/coins/types";
 import { type CustomRequest } from "../../../types/users/types";
-import { deleteCoinById, getCoins } from "./coinControllers";
+import { createCoin, deleteCoinById, getCoins } from "./coinControllers";
 
 const mockCoin: CoinData = {
   country: "Andorra",
@@ -19,6 +19,15 @@ const mockCoin: CoinData = {
 beforeEach(() => {
   jest.clearAllMocks();
 });
+
+const req: Partial<Request> = {};
+
+const res: Partial<Response> = {
+  status: jest.fn().mockReturnThis(),
+  json: jest.fn(),
+};
+
+const next = jest.fn();
 
 describe("Given getCoins controller", () => {
   describe("When it receives a request", () => {
@@ -108,6 +117,41 @@ describe("Given deleteCoinById controller", () => {
       );
 
       expect(next).toHaveBeenCalled();
+    });
+  });
+});
+
+describe("Given createCoin controller", () => {
+  describe("When it receives a wrong request", () => {
+    test("Then it should call its next method witn an error", async () => {
+      const customError = new CustomError(
+        "There was a problem. Couldn't create the coin",
+        500,
+        "Couldn't create the coin"
+      );
+      req.body = {};
+
+      await createCoin(req as CustomRequest, res as Response, next);
+
+      expect(next).toHaveBeenCalledWith(customError);
+    });
+  });
+
+  describe("When it receives a request with a coin", () => {
+    test("Then it should call its status method with code 201 and its json method with the created coin", async () => {
+      const expectedStatus = 201;
+      req.body = mockCoin;
+
+      Coin.create = jest.fn().mockReturnValue({
+        ...mockCoin,
+        // eslint-disable-next-line @typescript-eslint/naming-convention
+        toJSON: jest.fn().mockReturnValue(mockCoin),
+      });
+
+      await createCoin(req as CustomRequest, res as Response, next);
+
+      expect(res.status).toHaveBeenCalledWith(expectedStatus);
+      expect(res.json).toHaveBeenCalledWith(mockCoin);
     });
   });
 });

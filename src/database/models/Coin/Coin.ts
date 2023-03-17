@@ -1,4 +1,4 @@
-import { model, Schema } from "mongoose";
+import { type InferSchemaType, model, Schema } from "mongoose";
 
 const coinSchema = new Schema({
   country: {
@@ -33,5 +33,7 @@ const coinSchema = new Schema({
 });
 
 const Coin = model("Coin", coinSchema, "coins");
+
+export type CoinSchemaStructure = InferSchemaType<typeof coinSchema>;
 
 export default Coin;
