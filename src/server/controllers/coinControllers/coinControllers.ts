@@ -57,12 +57,10 @@ export const createCoin = async (
   next: NextFunction
 ) => {
   const coin = req.body as CoinSchemaStructure;
-  const id = "64062ff2d50bc0923b40f370";
 
   try {
     const newCoin = await Coin.create({
       ...coin,
-      owner: id,
     });
 
     res.status(201).json({ ...newCoin.toJSON() });
