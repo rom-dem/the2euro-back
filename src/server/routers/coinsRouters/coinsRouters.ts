@@ -2,6 +2,7 @@ import { Router } from "express";
 import {
   createCoin,
   deleteCoinById,
+  getCoinById,
   getCoins,
 } from "../../controllers/coinControllers/coinControllers.js";
 import { endpoints } from "../endpoints.js";
@@ -14,5 +15,6 @@ coinsRouters.delete(
   deleteCoinById
 );
 coinsRouters.post(`${endpoints.coins}${endpoints.create}`, createCoin);
+coinsRouters.get(`${endpoints.coins}${endpoints.byId}`, getCoinById);
 
 export default coinsRouters;

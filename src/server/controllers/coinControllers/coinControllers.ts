@@ -73,3 +73,24 @@ export const createCoin = async (
     next(customError);
   }
 };
+
+export const getCoinById = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
+  const { id } = req.params;
+
+  try {
+    const coin = await Coin.findById({ _id: id }).exec();
+
+    res.status(200).json({ coin });
+  } catch (error) {
+    const customError = new CustomError(
+      "There was a problem. Couldn't load the chosen coin",
+      500,
+      "Couldn't load the chosen coin"
+    );
+    next(customError);
+  }
+};
