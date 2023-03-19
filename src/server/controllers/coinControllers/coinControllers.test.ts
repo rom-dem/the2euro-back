@@ -3,7 +3,12 @@ import { CustomError } from "../../../CustomError/CustomError";
 import Coin from "../../../database/models/Coin/Coin";
 import { type CoinData } from "../../../types/coins/types";
 import { type CustomRequest } from "../../../types/users/types";
-import { createCoin, deleteCoinById, getCoins } from "./coinControllers";
+import {
+  createCoin,
+  deleteCoinById,
+  getCoinById,
+  getCoins,
+} from "./coinControllers";
 
 const mockCoin: CoinData = {
   country: "Andorra",
@@ -24,7 +29,7 @@ const req: Partial<Request> = {};
 
 const res: Partial<Response> = {
   status: jest.fn().mockReturnThis(),
-  json: jest.fn(),
+  json: jest.fn().mockReturnValue({}),
 };
 
 const next = jest.fn();
@@ -139,7 +144,7 @@ describe("Given createCoin controller", () => {
 
   describe("When it receives a request with a coin", () => {
     test("Then it should call its status method with code 201 and its json method with the created coin", async () => {
-      const expectedStatus = 201;
+      const expectedStatusCode = 201;
       req.body = mockCoin;
 
       Coin.create = jest.fn().mockReturnValue({
@@ -150,8 +155,40 @@ describe("Given createCoin controller", () => {
 
       await createCoin(req as CustomRequest, res as Response, next);
 
-      expect(res.status).toHaveBeenCalledWith(expectedStatus);
+      expect(res.status).toHaveBeenCalledWith(expectedStatusCode);
       expect(res.json).toHaveBeenCalledWith(mockCoin);
+    });
+  });
+});
+
+describe("Given the getCoinById controller", () => {
+  describe("When it receives a request with an id to load a coin", () => {
+    test("Then it should call its status method with status code 200", async () => {
+      const expectedStatusCode = 200;
+      req.params = { _id: mockCoin.id };
+
+      Coin.findOne = jest.fn().mockImplementationOnce(() => ({
+        exec: jest.fn().mockReturnValue({ _id: mockCoin.id }),
+      }));
+
+      await getCoinById(req as Request, res as Response, next);
+
+      expect(res.status).toHaveBeenCalledWith(expectedStatusCode);
+    });
+  });
+
+  describe("When it receives a bad request", () => {
+    test("Then it should call its next method", async () => {
+      const customError = new CustomError(
+        "There was a problem. Couldn't load the chosen coin",
+        500,
+        "Couldn't load the chosen coin"
+      );
+      req.body = {};
+
+      await getCoinById(req as Request, res as Response, next);
+
+      expect(next).toHaveBeenCalledWith(customError);
     });
   });
 });
