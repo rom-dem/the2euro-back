@@ -1,0 +1,143 @@
+{
+  "info": {
+    "_postman_id": "07025f3c-9774-4290-9417-692aa694987d",
+    "name": "the2euro",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "25531913"
+  },
+  "item": [
+    {
+      "name": "Coins",
+      "item": [
+        {
+          "name": "All coins",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{render}}/coins",
+              "host": ["{{render}}"],
+              "path": ["coins"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "One coin",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{render}}/coins/:id",
+              "host": ["{{render}}"],
+              "path": ["coins", ":id"],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "641a195917ef10a536cb7a54"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Create coin",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n            \"country\": \"Austria\",\n            \"year\": 2018,\n            \"issuingVolume\": 75000,\n            \"feature\": \"70 years of the Universal Declaration of Human Rights\",\n            \"description\": \"The design of the coin depicts seven staircases (representing the seven parishes or administrative divisions of Andorra) in the shape of mountains that lead to the valley, where there is the name of the issuing country 'ANDORRA' and the year of issue '2018'. These staircases are, at the same time, the branches of a tree symbolizing humankind, of which Andorra is an integral part. 30 leaves come out\",\n            \"image\": \"https://res.cloudinary.com/ducqy82uw/image/upload/c_scale,w_240/v1678818080/comm_2018_andorra_70yrs_declhumrights_we9ryh.webp\",\n            \"imageHd\": \"https://res.cloudinary.com/ducqy82uw/image/upload/c_scale,w_640/v1678818080/comm_2018_andorra_70yrs_declhumrights_we9ryh.webp\",\n            \"owner\": \"64062ff2d50bc0923b40f000\"\n        }",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{render}}/coins/create",
+              "host": ["{{render}}"],
+              "path": ["coins", "create"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Delete one coin",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{render}}/coins/delete/:id",
+              "host": ["{{render}}"],
+              "path": ["coins", "delete", ":id"],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "641a195917ef10a536cb7a54aa"
+                }
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Users",
+      "item": [
+        {
+          "name": "Login user",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"email\": \"falso@test.com\",\n    \"password\": \"falso1234\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{render}}/users/login",
+              "host": ["{{render}}"],
+              "path": ["users", "login"]
+            }
+          },
+          "response": []
+        }
+      ]
+    }
+  ],
+  "event": [
+    {
+      "listen": "prerequest",
+      "script": {
+        "type": "text/javascript",
+        "exec": [""]
+      }
+    },
+    {
+      "listen": "test",
+      "script": {
+        "type": "text/javascript",
+        "exec": [""]
+      }
+    }
+  ],
+  "variable": [
+    {
+      "key": "render",
+      "value": "https://roman-demchuk-final-project-202301-bcn.onrender.com",
+      "type": "string"
+    },
+    {
+      "key": "local",
+      "value": "http://localhost:4000",
+      "type": "string"
+    }
+  ]
+}
