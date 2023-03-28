@@ -67,4 +67,4 @@ To run the testing suites use **`npm test`**
 
 ## Frontend
 
-This is a full stack project, you can find the frontend code [here](https://github.com/isdi-coders-2023/Roman-Demchuk-Final-Project-front-202301-bcn)
+This is a full stack project, you can find the frontend code [here](https://github.com/rom-dem/the2euro-front)
