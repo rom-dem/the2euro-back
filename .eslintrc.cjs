@@ -13,6 +13,7 @@ module.exports = {
           "error",
           "interface",
         ],
+        "@typescript-eslint/consistent-type-assertions": "off",
       },
     },
     {
