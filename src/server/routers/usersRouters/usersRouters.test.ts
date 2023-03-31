@@ -7,7 +7,10 @@ import connectDatabase from "../../../database/connectDatabase.js";
 import User from "../../../database/models/User/User.js";
 import { app } from "../../app.js";
 import { CustomError } from "../../../CustomError/CustomError.js";
-import { type UserCredentials } from "../../../types/users/types.js";
+import {
+  type UserStructure,
+  type UserCredentials,
+} from "../../../types/users/types.js";
 import { endpoints } from "../endpoints.js";
 
 let server: MongoMemoryServer;
@@ -100,6 +103,31 @@ describe("Given a POST `/users/login` endpoint", () => {
       expect(response.body).toHaveProperty(
         "error",
         expectedError.publicMessage
+      );
+    });
+  });
+});
+
+describe("Given a POST '/users/register' endopoint", () => {
+  const registerUrl = `${endpoints.users}${endpoints.register}`;
+  const mockUser: UserStructure = {
+    password: "d0d01234",
+    email: "d0d01@test.com",
+    username: "Dodo1",
+  };
+
+  describe("When it receives an email 'd0d0@test.com', a password 'd0d01234' and a user name 'Dodo'", () => {
+    test("Then it should respond with status 201", async () => {
+      const expectedStatusCode = 201;
+
+      const response = await request(app)
+        .post(registerUrl)
+        .send(mockUser)
+        .expect(expectedStatusCode);
+
+      expect(response.body).toHaveProperty(
+        "message",
+        "The user has been created"
       );
     });
   });
