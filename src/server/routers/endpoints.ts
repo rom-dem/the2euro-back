@@ -1,6 +1,7 @@
 export const endpoints = {
   users: "/users",
   login: "/login",
+  register: "/register",
   root: "/",
   myCoins: "/my-coins",
   delete: "/delete",
