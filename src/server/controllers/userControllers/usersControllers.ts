@@ -51,3 +51,30 @@ export const loginUser = async (
     next(error);
   }
 };
+
+export const registerUser = async (
+  req: Request<
+    Record<string, unknown>,
+    Record<string, unknown>,
+    UserCredentials
+  >,
+  res: Response,
+  next: NextFunction
+) => {
+  const { password, email } = req.body;
+  const saltLength = 10;
+
+  try {
+    const hashedPassword = await bcrypt.hash(password, saltLength);
+    await User.create({ email, password: hashedPassword });
+
+    res.status(201).json({ message: "The user has been created" });
+  } catch (error: unknown) {
+    const customError = new CustomError(
+      (error as Error).message,
+      500,
+      "There was an issue creating a new user"
+    );
+    next(customError);
+  }
+};
