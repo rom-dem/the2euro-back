@@ -1,10 +1,10 @@
 # The 2 Euro Collection API REST
 
-[![Maintainability Rating](https://sonarcloud.io/api/project_badges/measure?project=isdi-coders-2023_Roman-Demchuk-Final-Project-back-202301-bcn&metric=sqale_rating)](https://sonarcloud.io/summary/new_code?id=isdi-coders-2023_Roman-Demchuk-Final-Project-back-202301-bcn)
-[![Coverage](https://sonarcloud.io/api/project_badges/measure?project=isdi-coders-2023_Roman-Demchuk-Final-Project-back-202301-bcn&metric=coverage)](https://sonarcloud.io/summary/new_code?id=isdi-coders-2023_Roman-Demchuk-Final-Project-back-202301-bcn)
-[![Technical Debt](https://sonarcloud.io/api/project_badges/measure?project=isdi-coders-2023_Roman-Demchuk-Final-Project-back-202301-bcn&metric=sqale_index)](https://sonarcloud.io/summary/new_code?id=isdi-coders-2023_Roman-Demchuk-Final-Project-back-202301-bcn)
-[![Lines of Code](https://sonarcloud.io/api/project_badges/measure?project=isdi-coders-2023_Roman-Demchuk-Final-Project-back-202301-bcn&metric=ncloc)](https://sonarcloud.io/summary/new_code?id=isdi-coders-2023_Roman-Demchuk-Final-Project-back-202301-bcn)
-[![Code Smells](https://sonarcloud.io/api/project_badges/measure?project=isdi-coders-2023_Roman-Demchuk-Final-Project-back-202301-bcn&metric=code_smells)](https://sonarcloud.io/summary/new_code?id=isdi-coders-2023_Roman-Demchuk-Final-Project-back-202301-bcn)
+[![Maintainability Rating](https://sonarcloud.io/api/project_badges/measure?project=rom-dem_the2euro-back&metric=sqale_rating)](https://sonarcloud.io/summary/new_code?id=rom-dem_the2euro-back)
+[![Coverage](https://sonarcloud.io/api/project_badges/measure?project=rom-dem_the2euro-back&metric=coverage)](https://sonarcloud.io/summary/new_code?id=rom-dem_the2euro-back)
+[![Technical Debt](https://sonarcloud.io/api/project_badges/measure?project=rom-dem_the2euro-back&metric=sqale_index)](https://sonarcloud.io/summary/new_code?id=rom-dem_the2euro-back)
+[![Lines of Code](https://sonarcloud.io/api/project_badges/measure?project=rom-dem_the2euro-back&metric=ncloc)](https://sonarcloud.io/summary/new_code?id=rom-dem_the2euro-back)
+[![Code Smells](https://sonarcloud.io/api/project_badges/measure?project=rom-dem_the2euro-back&metric=code_smells)](https://sonarcloud.io/summary/new_code?id=rom-dem_the2euro-back)
 
 The 2 Euro Collection is an API REST built with Node.js and Express.js that connects to a MongoDB database.
 The API contains information about coins and users, allowing CRUD operations to be performed on coins and user authentication with JWT.
@@ -68,4 +68,5 @@ To run the testing suites use **`npm test`**
 ## Frontend
 
 This is a full stack project, you can find the frontend code [here](https://github.com/rom-dem/the2euro-front)
-[Go to The2Euro](https://the2euro.vercel.app/)
+
+Production: [Go to The2Euro](https://the2euro.vercel.app/)
