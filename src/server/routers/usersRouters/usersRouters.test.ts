@@ -8,7 +8,7 @@ import User from "../../../database/models/User/User.js";
 import { app } from "../../app.js";
 import { CustomError } from "../../../CustomError/CustomError.js";
 import {
-  type UserStructure,
+  type UserRegisterCredentials,
   type UserCredentials,
 } from "../../../types/users/types.js";
 import { endpoints } from "../endpoints.js";
@@ -110,7 +110,7 @@ describe("Given a POST `/users/login` endpoint", () => {
 
 describe("Given a POST '/users/register' endopoint", () => {
   const registerUrl = `${endpoints.users}${endpoints.register}`;
-  const mockUser: UserStructure = {
+  const mockUser: UserRegisterCredentials = {
     password: "d0d01234",
     email: "d0d01@test.com",
     username: "Dodo1",

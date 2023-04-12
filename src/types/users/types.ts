@@ -6,7 +6,7 @@ export interface UserCredentials {
   email: string;
 }
 
-export interface UserStructure extends UserCredentials {
+export interface UserRegisterCredentials extends UserCredentials {
   username: string;
 }
 
