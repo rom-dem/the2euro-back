@@ -4,7 +4,7 @@ import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 import User from "../../../database/models/User/User.js";
 import {
-  type UserStructure,
+  type UserRegisterCredentials,
   type UserCredentials,
 } from "../../../types/users/types.js";
 import { loginUser, registerUser } from "./usersControllers.js";
@@ -111,10 +111,10 @@ describe("Given a registerUser controller", () => {
   const req = {} as Request<
     Record<string, unknown>,
     Record<string, unknown>,
-    UserStructure
+    UserRegisterCredentials
   >;
 
-  const mockUser: UserStructure = {
+  const mockUser: UserRegisterCredentials = {
     email: "d0d0@test.com",
     password: "d0d01234",
     username: "Dodo",
@@ -134,7 +134,10 @@ describe("Given a registerUser controller", () => {
 
   describe("When database throws an error", () => {
     test("Then it should call its next method", async () => {
-      const mockUserNoEmail: UserStructure = { ...mockUser, email: "" };
+      const mockUserNoEmail: UserRegisterCredentials = {
+        ...mockUser,
+        email: "",
+      };
       const error = new Error("Something went wrong");
       const customError = new CustomError(
         error.message,

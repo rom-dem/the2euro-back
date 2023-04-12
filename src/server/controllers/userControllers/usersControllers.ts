@@ -5,7 +5,7 @@ import jwt from "jsonwebtoken";
 import {
   type UserCredentials,
   type CustomJwtPayload,
-  type UserStructure,
+  type UserRegisterCredentials,
 } from "../../../types/users/types.js";
 import User from "../../../database/models/User/User.js";
 import { CustomError } from "../../../CustomError/CustomError.js";
@@ -54,7 +54,11 @@ export const loginUser = async (
 };
 
 export const registerUser = async (
-  req: Request<Record<string, unknown>, Record<string, unknown>, UserStructure>,
+  req: Request<
+    Record<string, unknown>,
+    Record<string, unknown>,
+    UserRegisterCredentials
+  >,
   res: Response,
   next: NextFunction
 ) => {
