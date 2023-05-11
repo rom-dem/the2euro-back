@@ -16,6 +16,7 @@ app.disable("x-powered-by");
 
 const allowedOrigins = [
   process.env.CORS_ALLOWED_PRODUCTION!,
+  process.env.CORS_ALLOWED_PRODUCTION_1!,
   process.env.CORS_ALLOWED_LOCAL!,
   process.env.CORS_ALLOWED_LOCAL_1!,
   process.env.CORS_ALLOWED_LOCAL_2!,
